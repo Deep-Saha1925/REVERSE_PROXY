@@ -1,0 +1,19 @@
+server:
+  listen: 8080
+
+  upstreams:
+    - id: node1
+      url: http://locahost:8001
+
+    - id: node2
+      url: http://locahost:8002
+
+  paths:
+    - path: /
+      upstreams:
+        - node1
+        - node2
+
+    - path: /admin
+      upstreams:
+        - node2
