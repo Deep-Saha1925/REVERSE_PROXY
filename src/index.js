@@ -8,7 +8,6 @@ async function main() {
     program.parse(); // cleaner
 
     const options = program.opts();
-
     // if (!options.config) {
     //     console.error("Please provide --config");
     //     process.exit(1);
