@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --exec \"node src/index.js\""
+    "dev": "nodemon --exec \"node src/index.js --config=config.yml\""
   },
   "keywords": [],
   "author": "",
