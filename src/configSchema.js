@@ -26,3 +26,7 @@ const serverSchema = z.object({
 export const rootConfigSchema = z.object({
     server: serverSchema
 });
+
+export function ConfigSchemaType(config){
+    return rootConfigSchema.parse(config);
+}
