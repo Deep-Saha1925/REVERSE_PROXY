@@ -1,5 +1,6 @@
 server:
   listen: 8080
+  workers: 4
 
   upstreams:
     - id: node1
@@ -8,7 +9,14 @@ server:
     - id: node2
       url: http://locahost:8002
 
-  paths:
+  headers:
+    - key: x-forward-for
+      value: '$ip'
+
+    - key: Authorization
+      value: "Bearer xyz"
+
+  rules:
     - path: /
       upstreams:
         - node1
