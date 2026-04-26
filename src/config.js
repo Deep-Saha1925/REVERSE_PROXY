@@ -9,3 +9,7 @@ async function parseYamlConfig(filePath){
     return JSON.stringify(configParsed);
 
 }
+
+async function validateConfig(config){
+    
+}
