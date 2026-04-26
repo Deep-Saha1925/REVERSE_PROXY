@@ -1,32 +1,7 @@
 import { program } from 'commander';
-import path from 'node:path';
 import { parseYamlConfig, validateConfig } from './config.js';
-import cluster from 'node:cluster';
 import os from 'node:os';
-
-class CreateServerConfig {
-    constructor(port, workerCount) {
-        this.port = port;
-        this.workerCount = workerCount;
-    }
-}
-
-async function createServer(config) {
-    const {workerCount} = config;
-    const workers = new Array(workerCount);
-
-    if(cluster.isPrimary){
-        console.log('Master process!!');
-
-        for(let i=0; i<workerCount; i++){
-            cluster.fork();
-            console.log(`Worker node spinned: ${i}`);
-        }
-    }else{
-        console.log(`Worker node`);
-        
-    }
-}
+import { createServer, CreateServerConfig } from './server.js';
 
 async function main() {
     program.option('--config <path>', 'Path to config file');
@@ -52,9 +27,13 @@ async function main() {
     // }
 
     if(options && 'config' in options){
-        const validatedConfig = validateConfig(await parseYamlConfig(options.config));
+        const validatedConfig = await validateConfig(await parseYamlConfig(options.config));
 
-        await createServer(new CreateServerConfig((await validatedConfig).server.listen, (await validatedConfig).server.workers ?? os.cpus().length))
+        await createServer(new CreateServerConfig(
+            (await validatedConfig).server.listen,
+            (await validatedConfig).server.workers ?? os.cpus().length,
+            validatedConfig
+        ))
     }
 }
 

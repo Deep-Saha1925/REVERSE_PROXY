@@ -1,6 +1,6 @@
 server:
   listen: 8080
-  workers: 1
+  workers: 3
 
   upstreams:
     - id: node1
