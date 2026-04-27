@@ -7,7 +7,7 @@
     "dev": "nodemon --exec \"node src/index.js --config=config.yml\""
   },
   "keywords": [],
-  "author": "",
+  "author": "Deep Saha",
   "license": "ISC",
   "description": "",
   "devDependencies": {

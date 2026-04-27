@@ -7,8 +7,7 @@ server:
       url: https://jsonplaceholder.typicode.com
 
     - id: dummy
-      url: dummyjson.com
-
+      url: https://dummyjson.com
   headers:
     - key: x-forward-for
       value: '$ip'
@@ -20,6 +19,10 @@ server:
     - path: /test
       upstreams:
         - dummy
+
+    - path: /my
+      upstreams:
+        - myProfile
 
     - path: /
       upstreams:
