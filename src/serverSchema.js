@@ -6,3 +6,9 @@ export const workerMessageSchema = z.object({
     body: z.any(),
     url: z.string()
 });
+
+export const workerMessageReplySchema = z.object({
+    data: z.string().optional(),
+    error: z.string().optional(),
+    errorCode: z.enum(['500', '404']).optional()
+});
