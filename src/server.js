@@ -78,7 +78,10 @@ export async function createServer(config) {
 
             const requestURL = messageValidated.url;
 
-            const rule = configParsed.server.rules.find(e => e.path === requestURL);
+            const rule = configParsed.server.rules.find((e) => {
+                const regex = new RegExp(`^${e.path}.*$`);
+                return regex.test(requestURL);
+            })
 
             if (!rule) {
                 const reply = {
