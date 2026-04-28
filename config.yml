@@ -8,6 +8,9 @@ server:
 
     - id: dummy
       url: https://dummyjson.com
+
+    - id: myProfile
+      url: https://github.com/Deep-Saha1925
   headers:
     - key: x-forward-for
       value: '$ip'
